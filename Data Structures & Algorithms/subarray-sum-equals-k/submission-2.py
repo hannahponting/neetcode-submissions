@@ -1,0 +1,13 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        prefixes = {0: 1}
+        current = 0
+        res = 0
+
+        for num in range(len(nums)):
+            current = current + nums[num]
+            diff = current - k
+            res += prefixes.get(diff, 0)
+            prefixes[current] = 1 + prefixes.get(current, 0)
+        print(prefixes)
+        return res
